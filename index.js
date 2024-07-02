@@ -3,10 +3,12 @@ require("dotenv").config();
 const conn = require("./db/conn");
 const express = require("express");
 const exphbs = require("express-handlebars");
-
+const handlebars = require("express-handlebars")
 const Usuario = require("./models/Usuario");
 const Cartao = require("./models/Cartao");
+const Conquista = require("./models/Conquista")
 const Jogo = require("./models/Jogo");
+const { DataTypes } = require("sequelize");
 
 Jogo.belongsToMany(Usuario, { through: "aquisicoes" });
 Usuario.belongsToMany(Jogo, { through: "aquisicoes" });
@@ -144,11 +146,11 @@ conn
     console.log("Ocorreu um erro: " + err);
   });
 
-// conn
-//   .authenticate()
-//   .then(() => {
-//     console.log("Conectado ao banco de dados com sucesso!");
-//   })
-//   .catch((err) => {
-//     console.log("Ocorreu um erro: " + err);
-//   });
+ conn
+   .authenticate()
+   .then(() => {
+     console.log("Conectado ao banco de dados com sucesso!");
+   })
+   .catch((err) => {
+     console.log("Ocorreu um erro: " + err);
+   });
